@@ -15,8 +15,8 @@ router.get('/', (req, res)=>{
 });
 
 router.get('/list', todo.getList);
-
 router.get('/detail/:id', todo.getDetail);
+router.get('/err', todo.tryErr);
 
 
 module.exports = router;

@@ -1,3 +1,6 @@
+const todoService = new (require('../services/todo'));
+const { success, fail } = require('../util/response');
+
 class Todo{
 
     getList(req, res){
@@ -7,11 +10,7 @@ class Todo{
             { id:3, content:'完成 express4 搭建项目'}
         ];
 
-        res.send({
-            code: 200,
-            msg:'成功响应',
-            data:list
-        });
+        success(res, list);
     }
 
     getDetail(req, res){
@@ -22,11 +21,17 @@ class Todo{
         ];
         const detail = list.find(li=> li.id == req.params.id);
 
-        res.send({
-            code: 200,
-            msg:'成功相应',
-            data: detail
-        });
+        success(res, detail);
+    }
+    
+    async tryErr(req, res){
+        try{
+            const result = await todoService.testErr();
+            
+            success(res, result);
+        }catch(err){
+            fail(res, err);
+        };
     }
 }
 

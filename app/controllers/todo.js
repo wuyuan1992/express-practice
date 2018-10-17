@@ -1,4 +1,4 @@
-const todoService = new (require('../services/todo'));
+const Request = require('../services/request');
 const { success, fail } = require('../util/response');
 
 class Todo{
@@ -26,7 +26,7 @@ class Todo{
     
     async tryErr(req, res){
         try{
-            const result = await todoService.testErr();
+            const result = await Request.get('http://www.testurl.com');
             
             success(res, result);
         }catch(err){

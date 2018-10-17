@@ -1,4 +1,4 @@
-const app = require('../../app/server');
+const app = require('../../app');
 
 // 监听端口
 const server = app.listen(4890, ()=>{
